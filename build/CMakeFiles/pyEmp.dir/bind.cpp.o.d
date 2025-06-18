@@ -1,18 +1,17 @@
-CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
+CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/Desktop/pyEmp/src/bind.cpp \
  /usr/include/stdc-predef.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/pybind11.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/class.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/attr.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/common.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/conduit/wrap_include_python_h.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/Python.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/patchlevel.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pyconfig.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pymacconfig.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h \
- /usr/include/limits.h \
- /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/pybind11.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/class.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/attr.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/common.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/conduit/wrap_include_python_h.h \
+ /home/hugo/anaconda3/include/python3.12/Python.h \
+ /home/hugo/anaconda3/include/python3.12/patchlevel.h \
+ /home/hugo/anaconda3/include/python3.12/pyconfig.h \
+ /home/hugo/anaconda3/include/python3.12/pymacconfig.h \
+ /usr/include/c++/13/stdlib.h /usr/include/c++/13/cstdlib \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
@@ -20,43 +19,20 @@ CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
- /usr/include/x86_64-linux-gnu/bits/local_lim.h \
- /usr/include/linux/limits.h \
- /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
- /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
- /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
- /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/stdio.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
+ /usr/include/c++/13/pstl/pstl_config.h /usr/include/stdlib.h \
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+ /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
  /usr/include/x86_64-linux-gnu/bits/time64.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
- /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/floatn.h \
- /usr/include/x86_64-linux-gnu/bits/floatn-common.h /usr/include/string.h \
- /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
- /usr/include/strings.h /usr/include/errno.h \
- /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/x86_64-linux-gnu/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
- /usr/include/c++/13/stdlib.h /usr/include/c++/13/cstdlib \
- /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
- /usr/include/c++/13/pstl/pstl_config.h /usr/include/stdlib.h \
- /usr/include/x86_64-linux-gnu/bits/waitflags.h \
- /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
- /usr/include/x86_64-linux-gnu/sys/types.h \
  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
@@ -79,7 +55,21 @@ CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/c++/13/bits/std_abs.h /usr/include/unistd.h \
+ /usr/include/c++/13/bits/std_abs.h /usr/include/stdio.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h /usr/include/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/x86_64-linux-gnu/bits/types/error_t.h /usr/include/string.h \
+ /usr/include/strings.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
@@ -87,14 +77,23 @@ CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h /usr/include/assert.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pyport.h \
- /usr/include/inttypes.h \
+ /usr/include/wchar.h /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+ /home/hugo/anaconda3/include/python3.12/pyport.h /usr/include/inttypes.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /usr/include/c++/13/math.h /usr/include/c++/13/cmath \
- /usr/include/c++/13/bits/requires_hosted.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/c++/13/math.h \
+ /usr/include/c++/13/cmath /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/c++/13/bits/cpp_type_traits.h \
  /usr/include/c++/13/ext/type_traits.h /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
@@ -152,112 +151,121 @@ CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
  /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/exports.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pymacro.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pymath.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pymem.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/pymem.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/object.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/object.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/objimpl.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/objimpl.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/typeslots.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pyhash.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/pydebug.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/bytearrayobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/bytearrayobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/bytesobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/bytesobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/unicodeobject.h \
- /usr/include/ctype.h /usr/include/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/unicodeobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/longobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/longintrepr.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/boolobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/floatobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/complexobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/rangeobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/memoryobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/tupleobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/tupleobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/listobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/listobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/dictobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/dictobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/odictobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/enumobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/setobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/methodobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/methodobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/moduleobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/funcobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/classobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/fileobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/fileobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pycapsule.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/code.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/code.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pyframe.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/traceback.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/traceback.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/sliceobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cellobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/iterobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/initconfig.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/genobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pystate.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/pystate.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/abstract.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/abstract.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/descrobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/genericaliasobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/warnings.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/weakrefobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/structseq.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/namespaceobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/picklebufobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/pytime.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/codecs.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pyerrors.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/pyerrors.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pythread.h \
+ /home/hugo/anaconda3/include/python3.12/exports.h \
+ /home/hugo/anaconda3/include/python3.12/pymacro.h \
+ /home/hugo/anaconda3/include/python3.12/pymath.h \
+ /home/hugo/anaconda3/include/python3.12/pymem.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/pymem.h \
+ /home/hugo/anaconda3/include/python3.12/pytypedefs.h \
+ /home/hugo/anaconda3/include/python3.12/pybuffer.h \
+ /home/hugo/anaconda3/include/python3.12/object.h \
+ /home/hugo/anaconda3/include/python3.12/pystats.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/object.h \
+ /home/hugo/anaconda3/include/python3.12/objimpl.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/objimpl.h \
+ /home/hugo/anaconda3/include/python3.12/typeslots.h \
+ /home/hugo/anaconda3/include/python3.12/pyhash.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/pydebug.h \
+ /home/hugo/anaconda3/include/python3.12/bytearrayobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/bytearrayobject.h \
+ /home/hugo/anaconda3/include/python3.12/bytesobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/bytesobject.h \
+ /home/hugo/anaconda3/include/python3.12/unicodeobject.h \
+ /usr/include/ctype.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/unicodeobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/initconfig.h \
+ /home/hugo/anaconda3/include/python3.12/pystate.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/pystate.h \
+ /home/hugo/anaconda3/include/python3.12/pyerrors.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/pyerrors.h \
+ /home/hugo/anaconda3/include/python3.12/longobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/longobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/longintrepr.h \
+ /home/hugo/anaconda3/include/python3.12/boolobject.h \
+ /home/hugo/anaconda3/include/python3.12/floatobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/floatobject.h \
+ /home/hugo/anaconda3/include/python3.12/complexobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/complexobject.h \
+ /home/hugo/anaconda3/include/python3.12/rangeobject.h \
+ /home/hugo/anaconda3/include/python3.12/memoryobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/memoryobject.h \
+ /home/hugo/anaconda3/include/python3.12/tupleobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/tupleobject.h \
+ /home/hugo/anaconda3/include/python3.12/listobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/listobject.h \
+ /home/hugo/anaconda3/include/python3.12/dictobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/dictobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/odictobject.h \
+ /home/hugo/anaconda3/include/python3.12/enumobject.h \
+ /home/hugo/anaconda3/include/python3.12/setobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/setobject.h \
+ /home/hugo/anaconda3/include/python3.12/methodobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/methodobject.h \
+ /home/hugo/anaconda3/include/python3.12/moduleobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/funcobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/classobject.h \
+ /home/hugo/anaconda3/include/python3.12/fileobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/fileobject.h \
+ /home/hugo/anaconda3/include/python3.12/pycapsule.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/code.h \
+ /home/hugo/anaconda3/include/python3.12/pyframe.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/pyframe.h \
+ /home/hugo/anaconda3/include/python3.12/traceback.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/traceback.h \
+ /home/hugo/anaconda3/include/python3.12/sliceobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/cellobject.h \
+ /home/hugo/anaconda3/include/python3.12/iterobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/genobject.h \
+ /home/hugo/anaconda3/include/python3.12/descrobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/descrobject.h \
+ /home/hugo/anaconda3/include/python3.12/genericaliasobject.h \
+ /home/hugo/anaconda3/include/python3.12/warnings.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/warnings.h \
+ /home/hugo/anaconda3/include/python3.12/weakrefobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/weakrefobject.h \
+ /home/hugo/anaconda3/include/python3.12/structseq.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/picklebufobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/pytime.h \
+ /home/hugo/anaconda3/include/python3.12/codecs.h \
+ /home/hugo/anaconda3/include/python3.12/pythread.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/pythread.h \
  /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/x86_64-linux-gnu/bits/sched.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/context.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/modsupport.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/compile.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/compile.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pythonrun.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/pythonrun.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pylifecycle.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/pylifecycle.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/ceval.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/ceval.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/sysmodule.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/sysmodule.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/osmodule.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/intrcheck.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/import.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/import.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/bltinmodule.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/eval.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/pyctype.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pystrtod.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pystrcmp.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/fileutils.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/fileutils.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/pyfpe.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/tracemalloc.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/frameobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/cpython/frameobject.h \
- /home/hugo/anaconda3/envs/client/include/python3.10/pythread.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/pybind11_namespace_macros.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/context.h \
+ /home/hugo/anaconda3/include/python3.12/modsupport.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/modsupport.h \
+ /home/hugo/anaconda3/include/python3.12/compile.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/compile.h \
+ /home/hugo/anaconda3/include/python3.12/pythonrun.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/pythonrun.h \
+ /home/hugo/anaconda3/include/python3.12/pylifecycle.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/pylifecycle.h \
+ /home/hugo/anaconda3/include/python3.12/ceval.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/ceval.h \
+ /home/hugo/anaconda3/include/python3.12/sysmodule.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/sysmodule.h \
+ /home/hugo/anaconda3/include/python3.12/osmodule.h \
+ /home/hugo/anaconda3/include/python3.12/intrcheck.h \
+ /home/hugo/anaconda3/include/python3.12/import.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/import.h \
+ /home/hugo/anaconda3/include/python3.12/abstract.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/abstract.h \
+ /home/hugo/anaconda3/include/python3.12/bltinmodule.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/pyctype.h \
+ /home/hugo/anaconda3/include/python3.12/pystrtod.h \
+ /home/hugo/anaconda3/include/python3.12/pystrcmp.h \
+ /home/hugo/anaconda3/include/python3.12/fileutils.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/fileutils.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/pyfpe.h \
+ /home/hugo/anaconda3/include/python3.12/tracemalloc.h \
+ /home/hugo/anaconda3/include/python3.12/frameobject.h \
+ /home/hugo/anaconda3/include/python3.12/cpython/frameobject.h \
+ /home/hugo/anaconda3/include/python3.12/pythread.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/pybind11_namespace_macros.h \
  /usr/include/c++/13/cstddef /usr/include/c++/13/cstring \
  /usr/include/c++/13/exception /usr/include/c++/13/bits/exception.h \
  /usr/include/c++/13/bits/exception_ptr.h \
@@ -326,11 +334,11 @@ CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc /usr/include/c++/13/version \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/cast.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/descr.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/native_enum_data.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/pytypes.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/buffer_info.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/cast.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/descr.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/native_enum_data.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/pytypes.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/buffer_info.h \
  /usr/include/c++/13/iterator /usr/include/c++/13/bits/stream_iterator.h \
  /usr/include/c++/13/bits/streambuf_iterator.h \
  /usr/include/c++/13/streambuf /usr/include/c++/13/bits/ios_base.h \
@@ -340,13 +348,24 @@ CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
  /usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h \
  /usr/include/c++/13/bits/streambuf.tcc /usr/include/c++/13/utility \
  /usr/include/c++/13/bits/stl_relops.h /usr/include/c++/13/optional \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/internals.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/conduit/pybind11_platform_abi_id.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/gil_simple.h \
- /usr/include/c++/13/cassert /usr/include/c++/13/atomic \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/internals.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/conduit/pybind11_platform_abi_id.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/gil_simple.h \
+ /usr/include/c++/13/cassert \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/trampoline_self_life_support.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/using_smart_holder.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/struct_smart_holder.h \
+ /usr/include/c++/13/functional /usr/include/c++/13/bits/std_function.h \
+ /usr/include/c++/13/array /usr/include/c++/13/compare \
+ /usr/include/c++/13/bits/stl_algo.h \
+ /usr/include/c++/13/bits/algorithmfwd.h \
+ /usr/include/c++/13/bits/stl_heap.h \
+ /usr/include/c++/13/bits/uniform_int_dist.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/value_and_holder.h \
+ /usr/include/c++/13/cstdint /usr/include/c++/13/atomic \
  /usr/include/c++/13/mutex /usr/include/c++/13/bits/chrono.h \
- /usr/include/c++/13/ratio /usr/include/c++/13/cstdint \
- /usr/include/c++/13/ctime /usr/include/c++/13/bits/parse_numbers.h \
+ /usr/include/c++/13/ratio /usr/include/c++/13/ctime \
+ /usr/include/c++/13/bits/parse_numbers.h \
  /usr/include/c++/13/bits/std_mutex.h \
  /usr/include/c++/13/bits/unique_lock.h /usr/include/c++/13/thread \
  /usr/include/c++/13/bits/std_thread.h \
@@ -362,36 +381,46 @@ CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
  /usr/include/c++/13/bits/ostream.tcc \
  /usr/include/c++/13/bits/istream.tcc \
  /usr/include/c++/13/bits/sstream.tcc \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/type_caster_base.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/gil.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/trampoline_self_life_support.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/using_smart_holder.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/struct_smart_holder.h \
- /usr/include/c++/13/functional /usr/include/c++/13/bits/std_function.h \
- /usr/include/c++/13/array /usr/include/c++/13/compare \
- /usr/include/c++/13/bits/stl_algo.h \
- /usr/include/c++/13/bits/algorithmfwd.h \
- /usr/include/c++/13/bits/stl_heap.h \
- /usr/include/c++/13/bits/uniform_int_dist.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/value_and_holder.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/cpp_conduit.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/dynamic_raw_ptr_cast_if_possible.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/typeid.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/type_caster_base.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/gil.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/cpp_conduit.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/dynamic_raw_ptr_cast_if_possible.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/typeid.h \
  /usr/include/c++/13/cxxabi.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/cxxabi_tweaks.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/options.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/exception_translation.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/function_record_pyobject.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/detail/init.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/gil_safe_call_once.h \
- /home/hugo/pyEmp/extern/pybind11/include/pybind11/typing.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/options.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/exception_translation.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/function_record_pyobject.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/detail/init.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/gil_safe_call_once.h \
+ /home/hugo/Desktop/pyEmp/src/extern/pybind11/include/pybind11/typing.h \
  /usr/include/c++/13/algorithm \
  /usr/include/c++/13/pstl/glue_algorithm_defs.h /usr/include/c++/13/stack \
  /usr/include/c++/13/deque /usr/include/c++/13/bits/stl_deque.h \
  /usr/include/c++/13/bits/deque.tcc /usr/include/c++/13/bits/stl_stack.h \
- /home/hugo/pyEmp/pyEmp.h /usr/local/include/emp-tool/emp-tool.h \
+ /home/hugo/Desktop/pyEmp/src/pyEmp.h /usr/include/c++/13/random \
+ /usr/include/c++/13/bits/random.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/opt_random.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/pmmintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/emmintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/xmmintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/mmintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/mm_malloc.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/mwaitintrin.h \
+ /usr/include/c++/13/bits/random.tcc /usr/include/c++/13/numeric \
+ /usr/include/c++/13/bits/stl_numeric.h \
+ /usr/include/c++/13/pstl/glue_numeric_defs.h /usr/include/c++/13/iomanip \
+ /usr/include/c++/13/locale \
+ /usr/include/c++/13/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/13/bits/codecvt.h \
+ /usr/include/c++/13/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/13/bits/locale_conv.h \
+ /usr/include/c++/13/bits/quoted_string.h /usr/include/c++/13/iostream \
+ /usr/local/include/emp-tool/emp-tool.h \
  /usr/local/include/emp-tool/io/file_io_channel.h \
- /usr/include/c++/13/iostream /usr/local/include/emp-tool/io/io_channel.h \
+ /usr/local/include/emp-tool/io/io_channel.h \
  /usr/local/include/emp-tool/utils/block.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/immintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/x86gprintrin.h \
@@ -410,7 +439,6 @@ CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/lzcntintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/lwpintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/movdirintrin.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/mwaitintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/mwaitxintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/pconfigintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/popcntintrin.h \
@@ -432,11 +460,6 @@ CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/xsavesintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/hresetintrin.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/mmintrin.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/xmmintrin.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/mm_malloc.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/emmintrin.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/pmmintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/tmmintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/smmintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/wmmintrin.h \
@@ -487,24 +510,11 @@ CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/prfchwintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/keylockerintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/amxfp16intrin.h \
- /usr/include/c++/13/iomanip /usr/include/c++/13/locale \
- /usr/include/c++/13/bits/locale_facets_nonio.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/13/bits/codecvt.h \
- /usr/include/c++/13/bits/locale_facets_nonio.tcc \
- /usr/include/c++/13/bits/locale_conv.h \
- /usr/include/c++/13/bits/quoted_string.h \
  /usr/local/include/emp-tool/utils/prg.h \
  /usr/local/include/emp-tool/utils/aes.h \
  /usr/local/include/emp-tool/utils/utils.h \
  /usr/local/include/emp-tool/utils/constants.h /usr/include/c++/13/chrono \
  /usr/local/include/emp-tool/utils/utils.hpp /usr/include/c++/13/climits \
- /usr/include/c++/13/random /usr/include/c++/13/bits/random.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/opt_random.h \
- /usr/include/c++/13/bits/random.tcc /usr/include/c++/13/numeric \
- /usr/include/c++/13/bits/stl_numeric.h \
- /usr/include/c++/13/pstl/glue_numeric_defs.h \
  /usr/local/include/emp-tool/utils/group.h /usr/include/openssl/ec.h \
  /usr/include/openssl/macros.h \
  /usr/include/x86_64-linux-gnu/openssl/opensslconf.h \
@@ -595,4 +605,71 @@ CMakeFiles/pyEmp.dir/bind.cpp.o: /home/hugo/pyEmp/bind.cpp \
  /usr/local/include/emp-ag2pc/config.h \
  /usr/local/include/emp-ag2pc/leaky_deltaot.h \
  /usr/local/include/emp-ag2pc/config.h \
- /usr/local/include/emp-ag2pc/amortized_2pc.h
+ /usr/local/include/emp-ag2pc/amortized_2pc.h \
+ /home/hugo/Desktop/pyEmp/src/plaintext_sha256.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/stdc++.h \
+ /usr/include/c++/13/cfloat \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h \
+ /usr/include/c++/13/ciso646 /usr/include/c++/13/csetjmp \
+ /usr/include/setjmp.h /usr/include/c++/13/cstdarg \
+ /usr/include/c++/13/scoped_allocator /usr/include/c++/13/any \
+ /usr/include/c++/13/variant /usr/include/c++/13/csignal \
+ /usr/include/signal.h \
+ /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
+ /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
+ /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h \
+ /usr/include/x86_64-linux-gnu/bits/sigaction.h \
+ /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+ /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
+ /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstack.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstksz.h \
+ /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h \
+ /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
+ /usr/include/c++/13/ccomplex /usr/include/c++/13/complex \
+ /usr/include/c++/13/cfenv /usr/include/c++/13/fenv.h /usr/include/fenv.h \
+ /usr/include/x86_64-linux-gnu/bits/fenv.h /usr/include/c++/13/cinttypes \
+ /usr/include/c++/13/cstdalign \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdalign.h \
+ /usr/include/c++/13/cstdbool \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h \
+ /usr/include/c++/13/ctgmath /usr/include/c++/13/cuchar \
+ /usr/include/uchar.h /usr/include/c++/13/list \
+ /usr/include/c++/13/bits/stl_list.h /usr/include/c++/13/bits/list.tcc \
+ /usr/include/c++/13/map /usr/include/c++/13/bits/stl_map.h \
+ /usr/include/c++/13/bits/stl_multimap.h /usr/include/c++/13/valarray \
+ /usr/include/c++/13/bits/valarray_array.h \
+ /usr/include/c++/13/bits/valarray_array.tcc \
+ /usr/include/c++/13/bits/valarray_before.h \
+ /usr/include/c++/13/bits/slice_array.h \
+ /usr/include/c++/13/bits/valarray_after.h \
+ /usr/include/c++/13/bits/gslice.h \
+ /usr/include/c++/13/bits/gslice_array.h \
+ /usr/include/c++/13/bits/mask_array.h \
+ /usr/include/c++/13/bits/indirect_array.h /usr/include/c++/13/codecvt \
+ /usr/include/c++/13/regex /usr/include/c++/13/bits/regex_constants.h \
+ /usr/include/c++/13/bits/regex_error.h \
+ /usr/include/c++/13/bits/regex_automaton.h \
+ /usr/include/c++/13/bits/regex_automaton.tcc \
+ /usr/include/c++/13/bits/regex_scanner.h \
+ /usr/include/c++/13/bits/regex_scanner.tcc \
+ /usr/include/c++/13/bits/regex_compiler.h \
+ /usr/include/c++/13/bits/regex_compiler.tcc \
+ /usr/include/c++/13/bits/regex.h /usr/include/c++/13/bits/regex.tcc \
+ /usr/include/c++/13/bits/regex_executor.h \
+ /usr/include/c++/13/bits/regex_executor.tcc \
+ /usr/include/c++/13/shared_mutex /usr/include/c++/13/charconv \
+ /usr/include/c++/13/filesystem /usr/include/c++/13/bits/fs_fwd.h \
+ /usr/include/c++/13/bits/fs_path.h /usr/include/c++/13/bits/fs_dir.h \
+ /usr/include/c++/13/bits/fs_ops.h /usr/include/c++/13/memory_resource \
+ /home/hugo/Desktop/pyEmp/src/utils.h

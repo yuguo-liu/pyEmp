@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hugo/pyEmp
+CMAKE_SOURCE_DIR = /home/hugo/Desktop/pyEmp/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hugo/pyEmp/build
+CMAKE_BINARY_DIR = /home/hugo/Desktop/pyEmp/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hugo/pyEmp/build/CMakeFiles /home/hugo/pyEmp/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hugo/Desktop/pyEmp/build/CMakeFiles /home/hugo/Desktop/pyEmp/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hugo/pyEmp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hugo/Desktop/pyEmp/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

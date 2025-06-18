@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/pyEmp.dir/bind.cpp.o"
   "CMakeFiles/pyEmp.dir/bind.cpp.o.d"
-  "pyEmp.cpython-310-x86_64-linux-gnu.so"
+  "pyEmp.cpython-312-x86_64-linux-gnu.so"
   "pyEmp.pdb"
 )
 
