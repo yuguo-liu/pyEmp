@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/home/hugo/Desktop/pyEmp/build",
-  "command": "/usr/bin/g++ -DpyEmp_EXPORTS -isystem /home/hugo/anaconda3/include/python3.12 -isystem /home/hugo/Desktop/pyEmp/src/extern/pybind11/include  -msse3 -mssse3 -maes -g -fPIC -fvisibility=hidden -o CMakeFiles/pyEmp.dir/bind.cpp.o -c /home/hugo/Desktop/pyEmp/src/bind.cpp",
-  "file": "/home/hugo/Desktop/pyEmp/src/bind.cpp",
-  "output": "CMakeFiles/pyEmp.dir/bind.cpp.o"
-}
-]
