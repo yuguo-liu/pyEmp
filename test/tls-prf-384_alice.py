@@ -30,4 +30,4 @@ if __name__=='__main__':
     res = tls_prf_384.online_computation(str_s, str_c, str_m)
     print(f"online duration: {(time.time() - s_time) * 1000}ms")
 
-    print(res)
+    print(f"0x{res}")

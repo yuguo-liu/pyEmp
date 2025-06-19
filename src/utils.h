@@ -155,4 +155,151 @@ void hex_string_to_unsigned_char_array(const std::string& hexStr, unsigned char*
         byteArray[i] = static_cast<unsigned char>(byte);
     }
 }
+
+// Function to convert hex string to binary string
+string hex_to_bin(const string &hex) {
+    string bin;
+    for (char c : hex)
+    {
+        int value = stoi(string(1, c), nullptr, 16);
+        bin += bitset<4>(value).to_string(); // Convert each hex digit to 4-bit binary
+    }
+    return bin;
+}
+
+// Function to convert binary string to hex string
+string bin_to_hex(const string &bin) {
+    stringstream hex;
+    for (size_t i = 0; i < bin.size(); i += 4)
+    {
+        int value = stoi(bin.substr(i, 4), nullptr, 2);
+        hex << std::hex << value; // Convert 4-bit binary to hex digit
+    }
+    return hex.str();
+}
+
+// Function to reverse the binary representation of a hex string
+string reverse_hex_binary(const string &hex)
+{
+    string binary = hex_to_bin(hex); // Convert hex to binary
+    reverse(binary.begin(), binary.end()); // Reverse binary string
+    return bin_to_hex(binary); // Convert reversed binary back to hex
+}
+
+// Function to convert an integer to a 16-character hexadecimal string
+string int_to_hex_16(int value)
+{
+    stringstream stream;
+    stream << std::setfill('0') << std::setw(16) << std::hex << std::uppercase << (unsigned int)value;
+    return stream.str();
+}
+
+/**
+ * Pads a hexadecimal string with zeros so that its length is a multiple of 32.
+ * If the string length is already a multiple of 32, no padding is applied.
+ * 
+ * @param hex_str The input hexadecimal string to be padded.
+ * @return The padded hexadecimal string.
+ */
+string pad_hex_string(const string& hex_str) {
+    // Calculate the length of the input string
+    size_t length = hex_str.length();
+    
+    // Calculate the remainder when the length is divided by 32
+    size_t remainder = length % 32;
+    
+    // If the remainder is not zero, calculate the number of zeros needed for padding
+    if (remainder != 0) {
+        size_t padding_length = 32 - remainder;
+        
+        // Create a string with the required number of zeros
+        string padding(padding_length, '0');
+        
+        // Append the padding to the original string
+        return hex_str + padding;
+    }
+    
+    // If the length is already a multiple of 32, return the original string
+    return hex_str;
+}
+
+string padding_mask(int length_plaintext) {
+    /**
+     * generating padding mask for aes-gcm in the case that 128 is not a factor of length plaintext
+     * generates a 128-bit hex that the first m bits are 1, and the last 128 - m bits are 0
+     */
+    int m = length_plaintext % 128;
+
+    uint64_t high = 0;
+    uint64_t low = 0;
+
+    if (m > 0) {
+        if (m < 64) {
+            high = ((1ULL << m) - 1) << (64 - m);
+        } else {
+            high = ~0ULL;
+            low = ((1ULL << (m - 64)) - 1) << (128 - m);
+        }
+    } else {
+        high = ~0ULL;
+        low = ~0ULL;
+    }
+
+    uint64_t result_high = high;
+    uint64_t result_low = low;
+
+    stringstream ss;
+    ss << hex << setw(16) << setfill('0') << result_high;
+    ss << setw(16) << setfill('0') << result_low;
+
+    return ss.str();
+}
+
+string sha256_padding(const string &hex_str) {
+    int original_length = hex_str.length();
+    int additional_length = 112 - (original_length % 128);
+    if (additional_length <= 0) additional_length += 128;
+
+    size_t padded_length = original_length + additional_length + 16;
+
+    // Add the '1' bit (0x80 in hex, i.e., 8 bits) to the end of the hex string
+    string padded_str = hex_str + "80";
+
+    // Add '0's to make the string length 64-byte aligned minus the 64-bit length
+    while (padded_str.length() < padded_length - 16) {
+        padded_str += "00";
+    }
+
+    // Append the length of the original string (in bits) in hex (64-bit length)
+    stringstream length_stream;
+    length_stream << setfill('0') << setw(16) << hex << original_length * 4;
+    padded_str += length_stream.str();
+
+    return padded_str;
+}
+
+string zero_padding(const string &hex_str, size_t target_length) {
+    string filled_str = hex_str;
+    while (filled_str.length() < target_length) {
+        filled_str += "00";
+    }
+    return filled_str;
+}
+
+int get_padding_length(const string &hex_str) {
+	int original_length = hex_str.length();
+    int additional_length = 112 - (original_length % 128);
+    if (additional_length <= 0) additional_length += 128;
+	return original_length + additional_length;
+}
+
+string utf8_to_hex(const std::string &utf8_str) {
+    stringstream hex_stream;
+
+    for (unsigned char c : utf8_str) {
+        hex_stream << std::setw(2) << std::setfill('0') << std::hex << (int)c;
+    }
+
+    return hex_stream.str();
+}
 #endif

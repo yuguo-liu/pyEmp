@@ -16,9 +16,6 @@
 using namespace std;
 using namespace emp;
 
-#define DEBUG false
-#define LOG false
-
 const string circuit_file_location = string("/usr/local/include/emp-tool/circuits/files/bristol_format/");
 
 class EmpAg2pcGarbledCircuit {
@@ -43,20 +40,103 @@ private:
     int party;
     NetIO *io;
     IKNP<NetIO> *ot;
+    const string cfn = "ECtF/add_2_xor_p256.txt";
+    bool DEBUG;
+    bool LOG;
+    
     void mta(BIGNUM **share, IKNP<NetIO> *ot, int party, NetIO *io, BIGNUM **data, const int len_data, BIGNUM *P, BN_CTX *ctx);
 
 public:
-    EmpECtF(int _party, const char *IP, int port, bool _debug = false);
+    EmpECtF(int _party, const char *IP, int port, bool _debug = false, bool _log = false);
     void offline_computation();
     string online_computation(string hin = "", string check_output = "");
 };
 
-
-class EmpGcm2pc {
+class EmpTlsPrf384 {
 private:
+    EmpAg2pcGarbledCircuit *hmac1;
+    EmpAg2pcGarbledCircuit *hmac2;
+    EmpAg2pcGarbledCircuit *hmac3;
+    EmpAg2pcGarbledCircuit *hmac4;
+    EmpAg2pcGarbledCircuit *hmac5;
+    const string iv_0 = "e6679056a175e6dd4ecf763c5caff2a5fe4a708a3116a0d9d59bc1f898b307da";
+    const string hmac1_cfn = "KDF/sha256_i_2_share_msg_2_mask_1_state_o_2_share.txt";
+    const string hmac2_cfn = "KDF/sha256_i_2_share_msg_1_state_o_hash_state.txt";
+    const string hmac3_cfn = "KDF/sha256_i_2_share_state_1_msg_o_hash.txt";
+    const string hmac4_cfn = "KDF/sha256_i_2_share_state_1_msg_o_hash.txt";
+    const string hmac5_cfn = "KDF/sha256_i_2_share_state_2_full_msg_o_2_share_hash.txt";
+    const string IPAD = "36";
+    const string OPAD = "5c";
+    bool DEBUG;
+    int party;
 
 public:
+    EmpTlsPrf384(int _party, const char *IP, int port, bool _debug = false);
+    void offline_computation();
+    string online_computation(string rnd_s, string rnd_c, string share, string check_output = "");
+};
 
+class EmpTlsPrf320 {
+private:
+    EmpAg2pcGarbledCircuit *hmac1;
+    EmpAg2pcGarbledCircuit *hmac2;
+    EmpAg2pcGarbledCircuit *hmac3;
+    EmpAg2pcGarbledCircuit *hmac4;
+    EmpAg2pcGarbledCircuit *hmac5;
+    const string iv_0 = "e6679056a175e6dd4ecf763c5caff2a5fe4a708a3116a0d9d59bc1f898b307da";
+    const string hmac1_cfn = "KDF/sha256_i_2_share_msg_2_mask_1_state_o_2_share.txt";
+    const string hmac2_cfn = "KDF/sha256_i_2_share_msg_1_state_o_hash_state.txt";
+    const string hmac3_cfn = "KDF/sha256_i_2_share_state_1_msg_o_hash.txt";
+    const string hmac4_cfn = "KDF/sha256_i_2_share_state_1_msg_o_hash.txt";
+    const string hmac5_cfn = "KDF/sha256_i_2_share_state_2_full_msg_o_2_share_hash_1_key_hash_320.txt";
+    const string IPAD = "36";
+    const string OPAD = "5c";
+    bool DEBUG;
+    int party;
+
+public:
+    EmpTlsPrf320(int _party, const char *IP, int port, bool _debug = false);
+    void offline_computation();
+    string online_computation(string rnd_s, string rnd_c, string share, string check_output = "");
+};
+
+class EmpTlsPrfCFSF {
+private:
+    EmpAg2pcGarbledCircuit *hmac1;
+    EmpAg2pcGarbledCircuit *hmac2;
+    EmpAg2pcGarbledCircuit *hmac3;
+    EmpAg2pcGarbledCircuit *hmac4;
+    EmpAg2pcGarbledCircuit *hmac5;
+    const string iv_0 = "e6679056a175e6dd4ecf763c5caff2a5fe4a708a3116a0d9d59bc1f898b307da";
+    const string hmac1_cfn = "KDF/sha256_i_2_share_msg_2_mask_1_state_o_2_share.txt";
+    const string hmac2_cfn = "KDF/sha256_i_2_share_msg_1_state_o_hash_state.txt";
+    const string hmac3_cfn = "KDF/sha256_i_2_share_state_1_msg_o_hash.txt";
+    const string hmac4_cfn = "KDF/sha256_i_2_share_state_1_msg_o_hash.txt";
+    const string hmac5_cfn = "KDF/sha256_i_2_share_state_2_full_msg_o_2_share_96.txt";
+    const string IPAD = "36";
+    const string OPAD = "5c";
+    bool DEBUG;
+    int party;
+    string msg;
+
+public:
+    EmpTlsPrfCFSF(int _party, const char *IP, int port, string msg, bool _debug = false);
+    void offline_computation();
+    string online_computation(string seed, string share, string check_output = "");
+};
+
+class EmpNaiveAesGcmEnc {
+private:
+    EmpAg2pcGarbledCircuit *aesgcm_circuit;
+    int party;
+    int len_c_i;
+    int len_a_i;
+    bool DEBUG;
+
+public:
+    EmpNaiveAesGcmEnc(int _party, const char *IP, int port, int _len_c, int _len_a, bool _debug = false);
+    void offline_computation();
+    string online_computation(string m, string ad, string key_share, string iv_share);
 };
 
 EmpAg2pcGarbledCircuit::EmpAg2pcGarbledCircuit(string circuit_file_name, int _party, const char *IP, int port, bool _debug) {
@@ -336,13 +416,14 @@ void EmpECtF::mta(BIGNUM **share, IKNP<NetIO> *ot, int party, NetIO *io, BIGNUM 
     *share = _res;
 }
 
-EmpECtF::EmpECtF(int _party, const char *IP, int port, bool _debug) {
+EmpECtF::EmpECtF(int _party, const char *IP, int port, bool _debug, bool _log) {
     // load the add to xor circuit
-    string cfn = "ECtF/add_2_xor_p256.txt";
     add_2_xor_circuit = new EmpAg2pcGarbledCircuit(cfn, _party, IP, port, _debug);
     party = _party;
     io = add_2_xor_circuit->get_NetIO();
     ot = new IKNP<NetIO>(io, true);     // malicious ot
+    DEBUG = _debug;
+    LOG = _log;
 }
 
 void EmpECtF::offline_computation() {
@@ -595,5 +676,537 @@ string EmpECtF::online_computation(string hin, string check_output) {
 
     delete io;
     return out;
+}
+
+EmpTlsPrf384::EmpTlsPrf384(int _party, const char *IP, int port, bool _debug) {
+    party = _party;
+    hmac1 = new EmpAg2pcGarbledCircuit(hmac1_cfn, _party, IP, port, _debug);
+    hmac2 = new EmpAg2pcGarbledCircuit(hmac2_cfn, _party, IP, port, _debug);
+    hmac3 = new EmpAg2pcGarbledCircuit(hmac3_cfn, _party, IP, port, _debug);
+    hmac4 = new EmpAg2pcGarbledCircuit(hmac4_cfn, _party, IP, port, _debug);
+    hmac5 = new EmpAg2pcGarbledCircuit(hmac5_cfn, _party, IP, port, _debug);
+    DEBUG = _debug;
+}
+
+void EmpTlsPrf384::offline_computation() {
+    hmac1->offline_computation();
+    hmac2->offline_computation();
+    hmac3->offline_computation();
+    hmac4->offline_computation();
+    hmac5->offline_computation();
+}
+
+string EmpTlsPrf384::online_computation(string rnd_s, string rnd_c, string share, string check_output) {
+    string alice_mask = "0000000000000000000000000000000000000000000000000000000000000000";
+    string bob_mask = "0000000000000000000000000000000000000000000000000000000000000000";
+
+    if (party == ALICE) {
+        alice_mask = generate_random_hex_string(64);
+    } else {
+        bob_mask = generate_random_hex_string(64);
+    }
+
+    string msg = "master secret";
+    msg = utf8_to_hex(msg);
+    string r_s = rnd_c;
+    string r_c = rnd_s;
+
+    string share_1 = "0000000000000000000000000000000000000000000000000000000000000000";
+    string share_2 = "0000000000000000000000000000000000000000000000000000000000000000";
+
+    if (party == ALICE) {
+        share_1 = share;
+    } else {
+        share_2 = share;
+    }
+
+    string V = msg + r_s + r_c;
+    string V_zeros = "";
+
+    for (int i = 0; i < V.length(); i++) {
+        V_zeros += "0";
+    }
+
+    int len_share_1 = share_1.length();
+    for (int i = 0; i < 128 - len_share_1; i++) {
+        share_1 += "0";
+        share_2 += "0";
+    }
+
+    string ipad = "";
+    string opad = "";
+    for (int i = 0; i < 64; i++) {
+        ipad += IPAD;
+        opad += OPAD;
+    }
+
+    string share_1_ipad = xorHexStrings(share_1, ipad);
+    string share_1_opad = xorHexStrings(share_1, opad);
+
+    string share_2_ipad = share_2;
+    string share_2_opad = share_2;
+
+    V = sha256_padding(share_1_ipad + V).substr(share_1_ipad.length());
+    
+    if (DEBUG) cout << "cal f_H(IV_0, k xor opad)" << endl;
+    string f_H_opad = hmac1->online_computation(
+        bob_mask + share_2_opad + iv_0 + alice_mask + share_1_opad
+    ).substr(64, 64);
+
+    string f_H_opad_alice = xorHexStrings(f_H_opad, alice_mask);
+    string f_H_opad_bob = bob_mask;
+
+    if (DEBUG) cout << "cal f_H(IV_0, k xor ipad)" << endl;
+	string f_H_ipad = hmac2->online_computation(
+        share_2_ipad + iv_0 + share_1_ipad
+    ).substr(64, 64);
+
+    if (DEBUG) cout << "cal rest of f_H(f_H(f_H(IV_0, k xor ipad), m_1), m_2)" << endl;
+	string f_H_ipad_V = plaintext_sha256(
+		V,
+		f_H_ipad
+	);
+
+    if (DEBUG) cout << "cal f_H(f_H_opad, f_H_ipad_V)" << endl;
+    f_H_ipad_V = sha256_padding(share_1_opad + f_H_ipad_V).substr(share_1_opad.length());
+	string M_1 = hmac3->online_computation(
+        f_H_opad_bob + f_H_opad_alice + f_H_ipad_V
+    ).substr(0, 64);
+
+    if (DEBUG) cout << "cal f_H_ipad_M reuse the component" << endl;
+    string M_1_padded = sha256_padding(share_1_ipad + M_1).substr(share_1_ipad.length());
+    string f_H_ipad_M = plaintext_sha256(
+        M_1_padded,
+        f_H_ipad
+    );
+
+    if (DEBUG) cout << "cal f_H(f_H_opad, f_H_ipad_M)" << endl;
+    f_H_ipad_M = sha256_padding(share_1_opad + f_H_ipad_M).substr(share_1_opad.length());
+    if (DEBUG) {
+        cout << "length of f_H_opad_alice: " << f_H_opad_alice.length() * 4 << endl;
+        cout << "length of f_H_opad_bob: " << f_H_opad_bob.length() * 4 << endl;
+        cout << "length of f_H_ipad_M: " << f_H_ipad_M.length() * 4 << endl;
+    }
+
+    string M_2 = hmac4->online_computation(
+        f_H_opad_bob + f_H_opad_alice + f_H_ipad_M
+    ).substr(0, 64);
+
+    if (DEBUG) cout << "cal f_H_ipad_M_1_V reuse the component" << endl;
+    string M_1_V = sha256_padding(share_1_ipad + M_1 + msg + r_s + r_c).substr(share_1_ipad.length());
+    string f_H_ipad_M_1_V = plaintext_sha256(
+        M_1_V,
+        f_H_ipad
+    );
+
+    if (DEBUG) cout << "cal f_H_ipad_M_2_V reuse the component" << endl;
+    string M_2_V = sha256_padding(share_1_ipad + M_2 + msg + r_s + r_c).substr(share_1_ipad.length());
+    string f_H_ipad_M_2_V = plaintext_sha256(
+        M_2_V,
+        f_H_ipad
+    );
+
+    if (DEBUG) cout << "cal ms & h(server key)" << endl;
+    alice_mask = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+    bob_mask = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+
+    if (party == ALICE) {
+        alice_mask = generate_random_hex_string(96);
+    } else {
+        bob_mask = generate_random_hex_string(96);
+    }
+    
+    f_H_ipad_M_1_V = sha256_padding(share_1_opad + f_H_ipad_M_1_V).substr(share_1_opad.length());
+    f_H_ipad_M_2_V = sha256_padding(share_1_opad + f_H_ipad_M_2_V).substr(share_1_opad.length());
+
+    if (DEBUG) {
+        cout << "length of f_H_opad_alice: " << f_H_opad_alice.length() * 4 << endl;
+        cout << "length of f_H_ipad_M_1_V: " << f_H_ipad_M_1_V.length() * 4 << endl;
+        cout << "length of alice_mask: " << alice_mask.length() * 4 << endl;
+        cout << "length of f_H_opad_bob: " << f_H_opad_bob.length() * 4 << endl;
+        cout << "length of f_H_ipad_M_2_V: " << f_H_ipad_M_2_V.length() * 4 << endl;
+        cout << "length of bob_mask: " << bob_mask.length() * 4 << endl;
+    }
+
+    string ms = hmac5->online_computation(
+        f_H_opad_bob + f_H_ipad_M_1_V + bob_mask + f_H_opad_alice + f_H_ipad_M_2_V + alice_mask
+    );
+
+    string ms_share = (party == ALICE) ? xorHexStrings(ms, alice_mask) : bob_mask;
+
+    return ms_share;
+}
+
+EmpTlsPrf320::EmpTlsPrf320(int _party, const char *IP, int port, bool _debug) {
+    party = _party;
+    hmac1 = new EmpAg2pcGarbledCircuit(hmac1_cfn, _party, IP, port, _debug);
+    hmac2 = new EmpAg2pcGarbledCircuit(hmac2_cfn, _party, IP, port, _debug);
+    hmac3 = new EmpAg2pcGarbledCircuit(hmac3_cfn, _party, IP, port, _debug);
+    hmac4 = new EmpAg2pcGarbledCircuit(hmac4_cfn, _party, IP, port, _debug);
+    hmac5 = new EmpAg2pcGarbledCircuit(hmac5_cfn, _party, IP, port, _debug);
+    DEBUG = _debug;
+}
+
+void EmpTlsPrf320::offline_computation() {
+    hmac1->offline_computation();
+    hmac2->offline_computation();
+    hmac3->offline_computation();
+    hmac4->offline_computation();
+    hmac5->offline_computation();
+}
+
+string EmpTlsPrf320::online_computation(string rnd_s, string rnd_c, string share, string check_output) {
+    string alice_mask = "0000000000000000000000000000000000000000000000000000000000000000";
+    string bob_mask = "0000000000000000000000000000000000000000000000000000000000000000";
+
+    if (party == ALICE) {
+        alice_mask = generate_random_hex_string(64);
+    } else {
+        bob_mask = generate_random_hex_string(64);
+    }
+
+	string msg = "key expansion";
+	msg = utf8_to_hex(msg);
+    string r_s = rnd_s;
+	string r_c = rnd_c;
+
+    string share_1 = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+    string share_2 = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+
+    if (party == ALICE) {
+        share_1 = share;
+    } else {
+        share_2 = share; 
+    }
+
+    string V = msg + r_s + r_c;
+    string V_zeros = "";
+
+    for (int i = 0; i < V.length(); i++) {
+        V_zeros += "0";
+    }
+
+    int len_share_1 = share_1.length();
+    for (int i = 0; i < 128 - len_share_1; i++) {
+        share_1 += "0";
+        share_2 += "0";
+    }
+
+    string ipad = "";
+    string opad = "";
+    for (int i = 0; i < 64; i++) {
+        ipad += IPAD;
+        opad += OPAD;
+    }
+
+    string share_1_ipad = xorHexStrings(share_1, ipad);
+    string share_1_opad = xorHexStrings(share_1, opad);
+
+    string share_2_ipad = share_2;
+    string share_2_opad = share_2;
+
+    V = sha256_padding(share_1_ipad + V).substr(share_1_ipad.length());
+
+    if (DEBUG) cout << "cal f_H(IV_0, k xor opad)" << endl;
+    string f_H_opad = hmac1->online_computation(
+        bob_mask + share_2_opad + iv_0 + alice_mask + share_1_opad
+    ).substr(64, 64);
+
+    string f_H_opad_alice = xorHexStrings(f_H_opad, alice_mask);
+    string f_H_opad_bob = bob_mask;
+
+    if (DEBUG) cout << "cal f_H(IV_0, k xor ipad)" << endl;
+    string f_H_ipad = hmac2->online_computation(
+		share_2_ipad + iv_0 + share_1_ipad
+	).substr(64, 64);
+
+    if (DEBUG) cout << "cal rest of f_H(f_H(f_H(IV_0, k xor ipad), m_1), m_2)" << endl;
+	string f_H_ipad_V = plaintext_sha256(
+		V,
+		f_H_ipad
+	);
+
+    if (DEBUG) cout << "cal f_H(f_H_opad, f_H_ipad_V)" << endl;
+    f_H_ipad_V = sha256_padding(share_1_opad + f_H_ipad_V).substr(share_1_opad.length());
+    string M_1 = hmac3->online_computation(
+        f_H_opad_bob + f_H_opad_alice + f_H_ipad_V
+    ).substr(0, 64);
+
+    if (DEBUG) cout << "cal f_H_ipad_M reuse the component" << endl;
+    string M_1_padded = sha256_padding(share_1_ipad + M_1).substr(share_1_ipad.length());
+    string f_H_ipad_M = plaintext_sha256(
+        M_1_padded,
+        f_H_ipad
+    );
+
+    if (DEBUG) cout << "cal f_H(f_H_opad, f_H_ipad_M)" << endl;
+    f_H_ipad_M = sha256_padding(share_1_opad + f_H_ipad_M).substr(share_1_opad.length());
+    if (DEBUG) {
+        cout << "length of f_H_opad_alice: " << f_H_opad_alice.length() * 4 << endl;
+        cout << "length of f_H_opad_bob: " << f_H_opad_bob.length() * 4 << endl;
+        cout << "length of f_H_ipad_M: " << f_H_ipad_M.length() * 4 << endl;
+    } 
+    string M_2 = hmac4->online_computation(
+        f_H_opad_bob + f_H_opad_alice + f_H_ipad_M
+    ).substr(0, 64);
+
+    if (DEBUG) cout << "cal f_H_ipad_M_1_V reuse the component" << endl;
+    string M_1_V = sha256_padding(share_1_ipad + M_1 + msg + r_s + r_c).substr(share_1_ipad.length());
+    string f_H_ipad_M_1_V = plaintext_sha256(
+        M_1_V,
+        f_H_ipad
+    );
+
+    if (DEBUG) cout << "cal f_H_ipad_M_2_V reuse the component" << endl;
+    string M_2_V = sha256_padding(share_1_ipad + M_2 + msg + r_s + r_c).substr(share_1_ipad.length());
+    string f_H_ipad_M_2_V = plaintext_sha256(
+        M_2_V,
+        f_H_ipad
+    );
+
+    if (DEBUG) cout << "cal ms & h(server key)" << endl;
+    alice_mask = "00000000000000000000000000000000000000000000000000000000000000000000000000000000";
+    bob_mask = "00000000000000000000000000000000000000000000000000000000000000000000000000000000";
+
+    if (party == ALICE) {
+        alice_mask = generate_random_hex_string(64) + "0000000000000000";
+    } else {
+        bob_mask = generate_random_hex_string(80);
+    }
+    
+    f_H_ipad_M_1_V = sha256_padding(share_1_opad + f_H_ipad_M_1_V).substr(share_1_opad.length());
+    f_H_ipad_M_2_V = sha256_padding(share_1_opad + f_H_ipad_M_2_V).substr(share_1_opad.length());
+
+    if (DEBUG) {
+        cout << "length of f_H_opad_alice: " << f_H_opad_alice.length() * 4 << endl;
+        cout << "length of f_H_ipad_M_1_V: " << f_H_ipad_M_1_V.length() * 4 << endl;
+        cout << "length of alice_mask: " << alice_mask.length() * 4 << endl;
+        cout << "length of f_H_opad_bob: " << f_H_opad_bob.length() * 4 << endl;
+        cout << "length of f_H_ipad_M_2_V: " << f_H_ipad_M_2_V.length() * 4 << endl;
+        cout << "length of bob_mask: " << bob_mask.length() * 4 << endl;
+    }
+    string ms_str = hmac5->online_computation(
+        f_H_opad_bob + f_H_ipad_M_1_V + bob_mask + f_H_opad_alice + f_H_ipad_M_2_V + alice_mask
+    );
+
+    string ms = ms_str.substr(0, 80);
+    string hash_server_key = ms_str.substr(80, 64);
+    string ms_share = (party == ALICE) ? alice_mask : xorHexStrings(ms, bob_mask);
+
+    if (party == ALICE) {
+        cout << ms_share << endl;
+        cout << hash_server_key << endl;
+    } else {
+        cout << ms_share << endl;
+        cout << hash_server_key << endl;
+    }
+
+	return ms_share + hash_server_key;
+}
+
+EmpTlsPrfCFSF::EmpTlsPrfCFSF(int _party, const char *IP, int port, string _msg, bool _debug) {
+    party = _party;
+    hmac1 = new EmpAg2pcGarbledCircuit(hmac1_cfn, _party, IP, port, _debug);
+    hmac2 = new EmpAg2pcGarbledCircuit(hmac2_cfn, _party, IP, port, _debug);
+    hmac3 = new EmpAg2pcGarbledCircuit(hmac3_cfn, _party, IP, port, _debug);
+    hmac4 = new EmpAg2pcGarbledCircuit(hmac4_cfn, _party, IP, port, _debug);
+    hmac5 = new EmpAg2pcGarbledCircuit(hmac5_cfn, _party, IP, port, _debug);
+    DEBUG = _debug;
+    assert(_msg == "client finished" || _msg == "server finished");
+    msg = _msg;
+}
+
+void EmpTlsPrfCFSF::offline_computation() {
+    hmac1->offline_computation();
+    hmac2->offline_computation();
+    hmac3->offline_computation();
+    hmac4->offline_computation();
+    hmac5->offline_computation();
+}
+
+string EmpTlsPrfCFSF::online_computation(string seed, string share, string check_output) {
+    string alice_mask = "0000000000000000000000000000000000000000000000000000000000000000";
+    string bob_mask = "0000000000000000000000000000000000000000000000000000000000000000";
+
+    if (party == ALICE) {
+        alice_mask = generate_random_hex_string(64);
+    } else {
+        bob_mask = generate_random_hex_string(64);
+    }
+
+	msg = utf8_to_hex(msg);
+
+    string share_1 = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+    string share_2 = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+
+    if (party == ALICE) {
+        share_1 = share;
+    } else {
+        share_2 = share; 
+    }
+
+    string V = msg + seed;
+    string V_zeros = "";
+
+    for (int i = 0; i < V.length(); i++) {
+        V_zeros += "0";
+    }
+
+    int len_share_1 = share_1.length();
+    for (int i = 0; i < 128 - len_share_1; i++) {
+        share_1 += "0";
+        share_2 += "0";
+    }
+
+    string ipad = "";
+    string opad = "";
+    for (int i = 0; i < 64; i++) {
+        ipad += IPAD;
+        opad += OPAD;
+    }
+
+    string share_1_ipad = xorHexStrings(share_1, ipad);
+    string share_1_opad = xorHexStrings(share_1, opad);
+
+    string share_2_ipad = share_2;
+    string share_2_opad = share_2;
+
+    V = sha256_padding(share_1_ipad + V).substr(share_1_ipad.length());
+
+    if (DEBUG) cout << "cal f_H(IV_0, k xor opad)" << endl;
+    string f_H_opad = hmac1->online_computation(
+        bob_mask + share_2_opad + iv_0 + alice_mask + share_1_opad
+    ).substr(64, 64);
+
+    string f_H_opad_alice = xorHexStrings(f_H_opad, alice_mask);
+    string f_H_opad_bob = bob_mask;
+
+    if (DEBUG) cout << "cal f_H(IV_0, k xor ipad)" << endl;
+    string f_H_ipad = hmac2->online_computation(
+		share_2_ipad + iv_0 + share_1_ipad
+	).substr(64, 64);
+
+    if (DEBUG) cout << "cal rest of f_H(f_H(f_H(IV_0, k xor ipad), m_1), m_2)" << endl;
+	string f_H_ipad_V = plaintext_sha256(
+		V,
+		f_H_ipad
+	);
+
+    if (DEBUG) cout << "cal f_H(f_H_opad, f_H_ipad_V)" << endl;
+    f_H_ipad_V = sha256_padding(share_1_opad + f_H_ipad_V).substr(share_1_opad.length());
+    string M_1 = hmac3->online_computation(
+        f_H_opad_bob + f_H_opad_alice + f_H_ipad_V
+    ).substr(0, 64);
+
+    if (DEBUG) cout << "cal f_H_ipad_M reuse the component" << endl;
+    string M_1_padded = sha256_padding(share_1_ipad + M_1).substr(share_1_ipad.length());
+    string f_H_ipad_M = plaintext_sha256(
+        M_1_padded,
+        f_H_ipad
+    );
+
+    if (DEBUG) cout << "cal f_H(f_H_opad, f_H_ipad_M)" << endl;
+    f_H_ipad_M = sha256_padding(share_1_opad + f_H_ipad_M).substr(share_1_opad.length());
+    if (DEBUG) {
+        cout << "length of f_H_opad_alice: " << f_H_opad_alice.length() * 4 << endl;
+        cout << "length of f_H_opad_bob: " << f_H_opad_bob.length() * 4 << endl;
+        cout << "length of f_H_ipad_M: " << f_H_ipad_M.length() * 4 << endl;
+    } 
+
+    string M_2 = hmac4->online_computation(
+        f_H_opad_bob + f_H_opad_alice + f_H_ipad_M
+    ).substr(0, 64);
+
+    if (DEBUG) cout << "cal f_H_ipad_M_1_V reuse the component" << endl;
+    string M_1_V = sha256_padding(share_1_ipad + M_1 + msg + seed).substr(share_1_ipad.length());
+    string f_H_ipad_M_1_V = plaintext_sha256(
+        M_1_V,
+        f_H_ipad
+    );
+
+    if (DEBUG) cout << "cal f_H_ipad_M_2_V reuse the component" << endl;
+    string M_2_V = sha256_padding(share_1_ipad + M_2 + msg + seed).substr(share_1_ipad.length());
+    string f_H_ipad_M_2_V = plaintext_sha256(
+        M_2_V,
+        f_H_ipad
+    );
+
+    if (DEBUG) cout << "cal ms & h(server key)" << endl;
+    alice_mask = "000000000000000000000000";
+    bob_mask = "000000000000000000000000";
+
+    if (party != ALICE) {
+        bob_mask = generate_random_hex_string(24);
+    } 
+    
+    f_H_ipad_M_1_V = sha256_padding(share_1_opad + f_H_ipad_M_1_V).substr(share_1_opad.length());
+    f_H_ipad_M_2_V = sha256_padding(share_1_opad + f_H_ipad_M_2_V).substr(share_1_opad.length());
+
+    if (DEBUG) {
+        cout << "length of f_H_opad_alice: " << f_H_opad_alice.length() * 4 << endl;
+        cout << "length of f_H_ipad_M_1_V: " << f_H_ipad_M_1_V.length() * 4 << endl;
+        cout << "length of alice_mask: " << alice_mask.length() * 4 << endl;
+        cout << "length of f_H_opad_bob: " << f_H_opad_bob.length() * 4 << endl;
+        cout << "length of f_H_ipad_M_2_V: " << f_H_ipad_M_2_V.length() * 4 << endl;
+        cout << "length of bob_mask: " << bob_mask.length() * 4 << endl;
+    } 
+
+    string ms_str = hmac5->online_computation(
+        f_H_opad_bob + f_H_ipad_M_1_V + bob_mask + f_H_opad_alice + f_H_ipad_M_2_V + alice_mask
+    );
+
+    string ms_share = (party == ALICE) ? alice_mask : xorHexStrings(ms_str, bob_mask);
+
+    cout << ms_share << endl;
+
+	return ms_share;
+}
+
+EmpNaiveAesGcmEnc::EmpNaiveAesGcmEnc(int _party, const char *IP, int port, int _len_c, int _len_a, bool _debug) {
+    string cfn = "AES/aes-gcm-" + to_string((int) _len_c / 128) + ".txt";
+    aesgcm_circuit = new EmpAg2pcGarbledCircuit(cfn, _party, IP, port, _debug);
+    party = _party;
+    len_a_i = _len_a;
+    len_c_i = _len_c;
+    DEBUG = _debug;
+}
+
+void EmpNaiveAesGcmEnc::offline_computation() {
+    aesgcm_circuit->offline_computation();
+}
+
+string EmpNaiveAesGcmEnc::online_computation(string m, string ad, string key_share, string iv_share) {
+    int plain_block = (int) len_c_i / 128;
+    int ad_block    = (int) len_a_i / 128;
+    plain_block += (len_c_i % 128 == 0) ? 0 : 1;
+    ad_block    += (len_a_i % 128 == 0) ? 0 : 1;
+
+    string len_c = int_to_hex_16(m.length() * 4);
+    string len_a = int_to_hex_16(ad.length() * 4);
+
+    string io_bob_plaintext         = (party == ALICE) ? string(plain_block * 32, '0') : pad_hex_string(m);
+    string io_bob_len_c             = "0000000000000000" + len_c;
+    string io_bob_key_share         = (party == ALICE) ? string(32, '0') : reverse_hex_binary(key_share);
+    string io_bob_counter_0_share   = (party == ALICE) ? string(32, '0') : reverse_hex_binary(iv_share + "00000001");
+    string io_bob_padding_mask      = (party == ALICE) ? string(32, '0') : padding_mask(len_c_i);
+
+    string io_alice_ad              = (party == ALICE) ? pad_hex_string(ad) : string(ad_block * 32, '0');
+    string io_alice_len_a           = len_a + "0000000000000000";
+    string io_alice_key_share       = (party == ALICE) ? reverse_hex_binary(key_share) : string(32, '0');
+    string io_alice_counter_0_share = (party == ALICE) ? reverse_hex_binary(iv_share + "00000000") : string(32, '0');
+    string io_alice_dummy           = string((plain_block - ad_block + 1) * 32, '0');
+
+    string in = io_bob_plaintext + io_bob_len_c + io_bob_key_share + io_bob_counter_0_share + io_bob_padding_mask 
+                    + io_alice_ad + io_alice_len_a + io_alice_key_share + io_alice_counter_0_share + io_alice_dummy;
+
+    if (DEBUG) cout << in << endl;
+    if (DEBUG) cout << in.length() * 4 << endl;
+
+    string c = aesgcm_circuit->online_computation(in);
+
+    cout << c.substr(0, plain_block * 32) << endl;
+    cout << c.substr(plain_block * 32, 32) << endl;
+
+    return c;
 }
 #endif
