@@ -3,6 +3,9 @@ project(pyEmp)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse3 -mssse3 -maes")
 
+set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
 set(PYTHON_EXECUTABLE "/home/hugo/anaconda3/envs/clients/bin/python")
 set(PYTHON_INCLUDE_DIRECTORY "/home/hugo/anaconda3/envs/clients/include/python3.12")
 

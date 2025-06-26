@@ -74,4 +74,35 @@ PYBIND11_MODULE(pyEmp, m) {
                py::arg("ad"),
                py::arg("key_share"),
                py::arg("iv_share"));
+     py::class_<EmpNaiveAesGcmDec>(m, "EmpNaiveAesGcmDec")
+          .def(py::init<int, const char*, int, int, int, bool>(),
+               py::arg("party"),
+               py::arg("IP"),
+               py::arg("port"),
+               py::arg("len_c"),
+               py::arg("len_a"),
+               py::arg("debug") = false)
+          .def("offline_computation", &EmpNaiveAesGcmDec::offline_computation)
+          .def("online_computation", &EmpNaiveAesGcmDec::online_computation,
+               py::arg("c"),
+               py::arg("ad"),
+               py::arg("key_share"),
+               py::arg("iv_share"),
+               py::arg("tag"));
+     py::class_<EmpNaiveAesGcmPredicateEnc>(m, "EmpNaiveAesGcmPredicateEnc")
+          .def(py::init<int, const char*, int, int, int, bool>(),
+               py::arg("party"),
+               py::arg("IP"),
+               py::arg("port"),
+               py::arg("len_c"),
+               py::arg("len_a"),
+               py::arg("debug") = false)
+          .def("offline_computation", &EmpNaiveAesGcmPredicateEnc::offline_computation)
+          .def("online_computation", &EmpNaiveAesGcmPredicateEnc::online_computation,
+               py::arg("m"),
+               py::arg("ad"),
+               py::arg("key_share"),
+               py::arg("iv_share"),
+               py::arg("commitment"),
+               py::arg("r_com"));
 }

@@ -139,6 +139,34 @@ public:
     string online_computation(string m, string ad, string key_share, string iv_share);
 };
 
+class EmpNaiveAesGcmDec {
+private:
+    EmpAg2pcGarbledCircuit *aesgcm_circuit;
+    int party;
+    int len_c_i;
+    int len_a_i;
+    bool DEBUG;
+
+public:
+    EmpNaiveAesGcmDec(int _party, const char *IP, int port, int _len_c, int _len_a, bool _debug = false);
+    void offline_computation();
+    string online_computation(string c, string ad, string key_share, string iv_share, string tag);
+};
+
+class EmpNaiveAesGcmPredicateEnc {
+private:
+    EmpAg2pcGarbledCircuit *pre_aesgcm_circuit;
+    int party;
+    int len_c_i;
+    int len_a_i;
+    bool DEBUG;
+
+public:
+    EmpNaiveAesGcmPredicateEnc(int _party, const char *IP, int port, int _len_c, int _len_a, bool _debug = false);
+    void offline_computation();
+    string online_computation(string m, string ad, string key_share, string iv_share, string commitment, string r_com);
+};
+
 EmpAg2pcGarbledCircuit::EmpAg2pcGarbledCircuit(string circuit_file_name, int _party, const char *IP, int port, bool _debug) {
     string cfn = circuit_file_location + circuit_file_name;
     cf = new BristolFormat(cfn.c_str());
@@ -1209,4 +1237,104 @@ string EmpNaiveAesGcmEnc::online_computation(string m, string ad, string key_sha
 
     return c;
 }
+
+EmpNaiveAesGcmDec::EmpNaiveAesGcmDec(int _party, const char *IP, int port, int _len_c, int _len_a, bool _debug) {
+    string cfn = "AES/aes-gcm-dec-" + to_string((int) _len_c / 128) + ".txt";
+    aesgcm_circuit = new EmpAg2pcGarbledCircuit(cfn, _party, IP, port, _debug);
+    party = _party;
+    len_a_i = _len_a;
+    len_c_i = _len_c;
+    DEBUG = _debug;
+}
+
+void EmpNaiveAesGcmDec::offline_computation() {
+    aesgcm_circuit->offline_computation();
+}
+
+string EmpNaiveAesGcmDec::online_computation(string c, string ad, string key_share, string iv_share, string tag) {
+    int cipher_block = (int) len_c_i / 128;
+    int ad_block    = (int) len_a_i / 128;
+    cipher_block += (len_c_i % 128 == 0) ? 0 : 1;
+    ad_block    += (len_a_i % 128 == 0) ? 0 : 1;
+
+    string len_c = int_to_hex_16(c.length() * 4);
+    string len_a = int_to_hex_16(ad.length() * 4);
+
+    string io_bob_ciphertext        = (party == ALICE) ? string(cipher_block * 32, '0') : pad_hex_string(c);
+    string io_bob_tag               = (party == ALICE) ? string(32, '0') : tag;
+    string io_bob_len_c             = "0000000000000000" + len_c;
+    string io_bob_key_share         = (party == ALICE) ? string(32, '0') : reverse_hex_binary(key_share);
+    string io_bob_counter_0_share   = (party == ALICE) ? string(32, '0') : reverse_hex_binary(iv_share + "00000001");
+    string io_bob_padding_mask      = (party == ALICE) ? string(32, '0') : padding_mask(len_c_i);
+
+    string io_alice_auth_data       = (party == ALICE) ? pad_hex_string(ad) : string(ad_block * 32, '0');
+    string io_alice_len_a           = len_a + "0000000000000000";
+    string io_alice_key_share       = (party == ALICE) ? reverse_hex_binary(key_share) : string(32, '0');
+    string io_alice_counter_0_share = (party == ALICE) ? reverse_hex_binary(iv_share + "00000000") : string(32, '0');
+    string io_alice_dummy           = string((cipher_block - ad_block + 2) * 32, '0');
+
+    string in = io_bob_ciphertext + io_bob_tag + io_bob_len_c + io_bob_key_share + io_bob_counter_0_share + io_bob_padding_mask 
+                    + io_alice_auth_data + io_alice_len_a + io_alice_key_share + io_alice_counter_0_share + io_alice_dummy;
+    if (DEBUG) cout << in << endl;
+    if (DEBUG) cout << in.length() * 4 << endl;
+
+    string m = aesgcm_circuit->online_computation(in);
+    cout << m.substr(0, 1) << endl;
+    cout << m.substr(1, (int) (len_c_i / 4)) << endl;
+
+    return m.substr(0, (int) (len_c_i / 4 + 1));
+}
+
+EmpNaiveAesGcmPredicateEnc::EmpNaiveAesGcmPredicateEnc(int _party, const char *IP, int port, int _len_c, int _len_a, bool _debug) {
+    string cfn = "AES/predicate-standard-aes-gcm-" + to_string((int) _len_c / 128) + ".txt";
+    pre_aesgcm_circuit = new EmpAg2pcGarbledCircuit(cfn, _party, IP, port, _debug);
+    party = _party;
+    len_a_i = _len_a;
+    len_c_i = _len_c;
+    DEBUG = _debug;
+}
+
+void EmpNaiveAesGcmPredicateEnc::offline_computation() {
+    pre_aesgcm_circuit->offline_computation();
+}
+
+string EmpNaiveAesGcmPredicateEnc::online_computation(string m, string ad, string key_share, string iv_share, string commitment, string r_com) {
+    int plain_block = (int) len_c_i / 128;
+    int ad_block    = (int) len_a_i / 128;
+    plain_block += (len_c_i % 128 == 0) ? 0 : 1;
+    ad_block    += (len_a_i % 128 == 0) ? 0 : 1;
+
+    string len_c = int_to_hex_16(m.length() * 4);
+    string len_a = int_to_hex_16(ad.length() * 4);
+
+    string io_bob_plaintext         = (party == ALICE) ? string(plain_block * 32, '0') : pad_hex_string(m);
+    string io_bob_len_c             = (party == ALICE) ? string(32, '0') : "0000000000000000" + len_c;
+    string io_bob_key_share         = (party == ALICE) ? string(32, '0') : reverse_hex_binary(key_share);
+    string io_bob_counter_0_share   = (party == ALICE) ? string(32, '0') : reverse_hex_binary(iv_share + "00000001");
+    string io_bob_padding_mask      = (party == ALICE) ? string(32, '0') : padding_mask(len_c_i);
+    string io_bob_dummy             = string((ad_block + 2) * 32, '0');
+
+    string io_alice_plaintext       = (party == ALICE) ? pad_hex_string(m): string(plain_block * 32, '0');
+    string io_alice_auth_data       = (party == ALICE) ? pad_hex_string(ad) : string(ad_block * 32, '0');
+    string io_alice_len_a           = (party == ALICE) ? len_a + "0000000000000000" : string(32, '0');
+    string io_alice_key_share       = (party == ALICE) ? reverse_hex_binary(key_share) : string(32, '0');
+    string io_alice_counter_0_share = (party == ALICE) ? reverse_hex_binary(iv_share + "00000000") : string(32, '0');
+    string io_alice_commitment      = (party == ALICE) ? commitment : string(64, '0');
+    string io_alice_r_com           = (party == ALICE) ? r_com : string(32, '0');
+
+    string in = io_bob_plaintext + io_bob_len_c + io_bob_key_share + io_bob_counter_0_share + io_bob_padding_mask + io_bob_dummy 
+                    + io_alice_plaintext + io_alice_auth_data + io_alice_len_a + io_alice_key_share + io_alice_counter_0_share + io_alice_commitment + io_alice_r_com;
+    
+    if (DEBUG) cout << in << endl;
+    if (DEBUG) cout << in.length() * 4 << endl;
+
+    string c = pre_aesgcm_circuit->online_computation(in);
+
+    cout << c.substr(0, 1) << endl;
+    cout << c.substr(1, (int) len_c_i / 4) << endl;
+    cout << c.substr(1 + plain_block * 32, 32) << endl;
+
+    return c;
+}
+
 #endif

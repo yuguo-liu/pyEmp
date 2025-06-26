@@ -6,5 +6,5 @@ CXX_DEFINES = -DpyEmp_EXPORTS
 
 CXX_INCLUDES = -isystem /home/hugo/anaconda3/envs/clients/include/python3.10 -isystem /home/hugo/Desktop/pyEmp/src/extern/pybind11/include
 
-CXX_FLAGS =  -msse3 -mssse3 -maes -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects
+CXX_FLAGS =  -msse3 -mssse3 -maes -O3 -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects
 
