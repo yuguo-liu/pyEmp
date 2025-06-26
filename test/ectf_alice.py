@@ -1,6 +1,7 @@
 import sys
 sys.path.append("../")
 from build import pyEmp
+import time
 
 if __name__=='__main__':
     party, port = 1, 12345
@@ -16,8 +17,13 @@ if __name__=='__main__':
 
     host = "127.0.0.1"
 
+    s_time = time.time()
     ectf = pyEmp.EmpECtF(party, host, port, False)
     ectf.offline_computation()
-    res = ectf.online_computation(str_x + str_y)
+    print(f"offline duration: {(time.time() - s_time) * 1000}ms")
 
+    s_time = time.time()
+    res = ectf.online_computation(str_x + str_y)
+    print(f"online duration: {(time.time() - s_time) * 1000}ms")
+    
     print(res)
