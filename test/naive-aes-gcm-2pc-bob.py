@@ -4,6 +4,7 @@ sys.path.append("../")
 from build import pyEmp
 import time
 import random
+import json
 
 def generate_hex_string(length, seed=None):
     if seed is not None:
@@ -16,8 +17,16 @@ if __name__=='__main__':
     party, port = 2, 12345
     print("I'm Bob!")
 
-    for block_length in range(1, 10):
-        print("====" * 10)
+    exp_data = {}
+
+    for block_length in [16, 32, 64, 128]:
+        exp_data[f"block-{block_length}"] = {
+            "online": 0.0,
+            "offline": 0.0
+        }
+
+        print(f"{block_length}", "====" * 10)
+
         bob_m           = generate_hex_string(block_length * 32, seed=123)
         bob_key_share   = generate_hex_string(32, seed=123)
         bob_iv_share    = generate_hex_string(24, seed=123)
@@ -34,11 +43,18 @@ if __name__=='__main__':
         s_time = time.time()
         aesgcm = pyEmp.EmpNaiveAesGcmEnc(party, host, port, len_c_i, len_a_i, False)
         aesgcm.offline_computation()
-        print(f"offline duration: {(time.time() - s_time) * 1000}ms")
+        offline_time = time.time() - s_time
+        print(f"offline duration: {offline_time * 1000}ms")
+        exp_data[f"block-{block_length}"]["offline_time"] = offline_time * 1000
 
         s_time = time.time()
         c = aesgcm.online_computation(bob_m, alice_auth_data, bob_key_share, bob_iv_share)
-        print(f"online duration: {(time.time() - s_time) * 1000}ms")
+        online_time = time.time() - s_time
+        print(f"online duration: {online_time * 1000}ms")
+        exp_data[f"block-{block_length}"]["online_time"] = online_time * 1000
 
         print(f"get cipher 0x{c[:-32]}")
         print(f"get tag    0x{c[-32:]}")
+    
+    with open("./comm_data/aes-gcm.json", "w") as j:
+        json.dump(exp_data, j, indent=4)

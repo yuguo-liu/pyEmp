@@ -22,6 +22,8 @@ if __name__=='__main__':
     tls_prf_96.offline_computation()
     print(f"offline duration: {(time.time() - s_time) * 1000}ms")
 
+    input("Press the key to continue...")
+
     s_time = time.time()
     res = tls_prf_96.online_computation(str_seed, str_m)
     print(f"online duration: {(time.time() - s_time) * 1000}ms")

@@ -22,8 +22,10 @@ if __name__=='__main__':
     ectf.offline_computation()
     print(f"offline duration: {(time.time() - s_time) * 1000}ms")
 
+    input("Press the key to continue...")
+
     s_time = time.time()
     res = ectf.online_computation(str_x + str_y)
     print(f"online duration: {(time.time() - s_time) * 1000}ms")
-    
+
     print(res)

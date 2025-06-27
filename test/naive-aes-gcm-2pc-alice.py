@@ -15,8 +15,8 @@ if __name__=='__main__':
     party, port = 1, 12345
     print("I'm Alice!")
 
-    for block_length in range(1, 10):
-        print("====" * 10)
+    for block_length in [16, 32, 64, 128]:
+        print(f"{block_length}", "====" * 10)
 
         bob_m         = generate_hex_string(block_length * 32, seed=123)
         bob_key_share = "0"
@@ -42,3 +42,5 @@ if __name__=='__main__':
 
         print(f"get cipher 0x{c[:-32]}")
         print(f"get tag    0x{c[-32:]}")
+    
+    
